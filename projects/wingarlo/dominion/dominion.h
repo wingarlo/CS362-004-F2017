@@ -128,4 +128,15 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state);
 /* Set array position of each player who won (remember ties!) to
    1, others to 0 */
 
+/********************************************************
+*Following functions are all for assignment 2
+*card functions include:
+*adventurer: int adventure(struct, int);
+*smithy: int smith();
+*council room: int conrom();
+*village: int vil();
+*gardens: int garden();
+********************************************************/   
+int adventure(struct gameState *state, int currentPlayer);
+
 #endif
