@@ -132,11 +132,14 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state);
 *Following functions are all for assignment 2
 *card functions include:
 *adventurer: int adventure(struct, int);
-*smithy: int smith();
-*council room: int conrom();
-*village: int vil();
+*smithy: int smith(struct, int, int);
+*council room: int conrom(struct, int, int);
+*village: int vil(struct, int, int);
 *gardens: int garden();
 ********************************************************/   
 int adventure(struct gameState *state, int currentPlayer);
-
+int smith(struct gameState *state, int currentPlayer, int handPos);
+int conrom(struct gameState *state, int currentPlayer, int handPos);
+int vil(struct gameState *state, int currentPlayer, int handPos);
+int garden();
 #endif
