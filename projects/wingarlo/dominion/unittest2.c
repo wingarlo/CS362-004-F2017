@@ -20,29 +20,46 @@
 #include "rngs.h"
 
 int main(){
-	int i, score;
+	int i;
+	unsigned int score;
 	int seed = 1000;
 	int numPlayer = 2;
-	int t, r;
+	unsigned int t;
+	int r;
 	int k[10] = {adventurer, council_room, feast, gardens, mine
 			   , remodel, smithy, village, baron, great_hall};
 	struct gameState G;
-	for(t = 0; t<3;t++){
+	int curses[5];
+    int estates[5];
+    int duchys[5];
+	for (i = 0; i < 5; i++)
+    {
+        curses[i] = curse;
+        estates[i] = estate;
+        duchys[i] = duchy;
+    }
+	for(t = 0; t<5;t++){
 		printf("Test player %d by adding %d victory cards in their hand, discard, or deck.\n", 0, t);
+		printf("test0\n");
 		memset(&G, 23, sizeof(struct gameState));   // clear the game state
+		printf("test1\n");
 		r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
-		for(i = 1; i<=t; i++){//itterates 1 then 2 then 3 times
-			gainCard(0,&G,t,0); //(curse, gamestate G, pile, player 0)
-			gainCard(1,&G,t,0); //(estate, gamestate G, pile, player 0)
-			gainCard(2,&G,t,0); //(duchy, gamestate G, pile, player 0)
-			gainCard(3,&G,t,0); //(province, gamestate G, pile, player 0)
-		}
-		for (i = 0; i < G.discardCount[0]; i++){
-			printf("test%d\n",G.deck[0][i]);
-		}
+		memcpy(G.hand[0], curses, sizeof(int) * t); // set t cards to curse
 		score = scoreFor(0,&G);
-		printf("score = %d, expected = %d\n", score, (-1 + 1 + 3 + 6)*t);
-		//assert(score == ((-1 + 1 + 3 + 6)*t));
+		printf("score = %d, expected = %d\n", score, ((-1)*t)+1);
+		assert(score == 1+((-1)*t));
+		memcpy(G.hand[0], estates, sizeof(int) * t); // set t cards to estate
+		score = scoreFor(0,&G);
+		printf("score = %d, expected = %d\n", score, 1+t);
+		assert(score == 1+t);
+		memcpy(G.deck[0], estates, sizeof(int) * t); // set t cards to estate
+		score = scoreFor(0,&G);
+		printf("score = %d, expected = %d\n", score, 1+((2)*t));
+		assert(score == (t)+1+t);
+		memcpy(G.discard[0], duchys, sizeof(int) * t); // set t cards to duchy
+		score = scoreFor(0,&G);
+		printf("score = %d, expected = %d\n", score, ((-1 + 1 + 3 + 6)*t)+1);
+		assert(score == (t+(3*t)+1+t));
 	}
 
 	return 0;
