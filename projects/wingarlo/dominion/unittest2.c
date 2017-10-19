@@ -40,9 +40,7 @@ int main(){
     }
 	for(t = 0; t<5;t++){
 		printf("Test player %d by adding %d victory cards in their hand, discard, or deck.\n", 0, t);
-		printf("test0\n");
 		memset(&G, 23, sizeof(struct gameState));   // clear the game state
-		printf("test1\n");
 		r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
 		memcpy(G.hand[0], curses, sizeof(int) * t); // set t cards to curse
 		score = scoreFor(0,&G);
