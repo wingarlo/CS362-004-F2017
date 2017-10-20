@@ -5,7 +5,7 @@
 *
 *This will test the dominion.c function int getWinners(int players[MAX_PLAYERS], struct gameState *state)
 *
-*Each test will add several numbers of victory cards to the 3 different piles: hand, deck, and discard
+*Each test will add several numbers of victory cards to each player, and test for the winner
 *
 *Add to make file:
 *unittest3: unittest3.c dominion.o rngs.o
