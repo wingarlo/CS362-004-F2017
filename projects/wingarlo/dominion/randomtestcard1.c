@@ -26,8 +26,8 @@
 
 int main(){
 	int t, p, r;
-	succ = 0;
-	fal = 0;
+	int succ = 0;
+	int fail = 0;
 	int seed = 1000;
 	srand(seed);
 	int numPlayer = (rand()%3)+2;//2-4 players

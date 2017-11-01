@@ -26,9 +26,9 @@
 #include "rngs.h"
 
 int main(){
-	int t, p, r;
-	succ = 0;
-	fal = 0;
+	int t, p, r, 
+	int succ = 0;
+	int fail = 0;
 	int seed = 1000;
 	srand(seed);
 	int numPlayer = (rand()%3)+2;//2-4 players
@@ -41,7 +41,10 @@ int main(){
 		r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
 		p = rand()%numPlayer; //choses random player
 		vil(&G,p,0);
-
+		if (G.numActions == 3)
+			succ++;
+		else
+			fail++;
 	}
 	printf("\nCode did not break\n");
 	return 0;
