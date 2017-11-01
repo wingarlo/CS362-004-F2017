@@ -10,7 +10,7 @@
 *
 *randomtestcard2.c
 *
-*	
+*	VILLAGE
 *
 *Add to make file:
 *randomtestcard2: randomtestcard2.c dominion.o rngs.o
@@ -26,7 +26,7 @@
 #include "rngs.h"
 
 int main(){
-	int t, p, r, succ, fal;
+	int t, p, r;
 	succ = 0;
 	fal = 0;
 	int seed = 1000;
@@ -40,12 +40,8 @@ int main(){
 		memset(&G, 23, sizeof(struct gameState));   // clear the game state
 		r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
 		p = rand()%numPlayer; //choses random player
+		vil(&G,p,0);
 
-		smith(&G,p,0);
-		if(G.handCount[p] == 8)
-			succ++;
-		else
-			fal++;
 	}
 	printf("\nCode did not break\n");
 	printf("\nThe function worked correctly %i times\nAnd failed %i times\n\n",succ,fal);

@@ -25,7 +25,7 @@
 #include "rngs.h"
 
 int main(){
-	int t, p, r, succ, fal;
+	int t, p, r;
 	succ = 0;
 	fal = 0;
 	int seed = 1000;
@@ -41,10 +41,7 @@ int main(){
 		p = rand()%numPlayer; //choses random player
 
 		smith(&G,p,0);
-		if(G.handCount[p] == 8)
-			succ++;
-		else
-			fal++;
+
 	}
 	printf("\nCode did not break\n");
 	printf("\nThe function worked correctly %i times\nAnd failed %i times\n\n",succ,fal);
