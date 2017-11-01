@@ -44,6 +44,5 @@ int main(){
 
 	}
 	printf("\nCode did not break\n");
-	printf("\nThe function worked correctly %i times\nAnd failed %i times\n\n",succ,fal);
 	return 0;
 }
