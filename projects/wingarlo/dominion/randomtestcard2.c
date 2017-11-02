@@ -26,7 +26,7 @@
 #include "rngs.h"
 
 int main(){
-	int t, p, r, 
+	int t, p, r;
 	int succ = 0;
 	int fail = 0;
 	int seed = 1000;
@@ -47,5 +47,6 @@ int main(){
 			fail++;
 	}
 	printf("\nCode did not break\n");
+	printf("Succeded %i times\nFailed %i times\n",succ,fail);
 	return 0;
 }
