@@ -1,0 +1,69 @@
+        -:    0:Source:randomtestcard2.c
+        -:    0:Graph:randomtestcard2.gcno
+        -:    0:Data:randomtestcard2.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/***
+        -:    2:*Logan Wingard
+        -:    3:*11/1/2017 
+        -:    4:*  _
+        -:    5:*|o o\ 
+        -:    6:*| ^  \
+        -:    7:* \    \
+        -:    8:*  `~~~'
+        -:    9:*sad ghost gets no love in November
+        -:   10:*
+        -:   11:*randomtestcard2.c
+        -:   12:*
+        -:   13:*	VILLAGE
+        -:   14:*
+        -:   15:*Add to make file:
+        -:   16:*randomtestcard2: randomtestcard2.c dominion.o rngs.o
+        -:   17:*      gcc -o randomtestcard2 -g  randomtestcard2.c dominion.o rngs.o $(CFLAGS)
+        -:   18:***/
+        -:   19:
+        -:   20:#include "dominion.h"
+        -:   21:#include "dominion_helpers.h"
+        -:   22:#include <string.h>
+        -:   23:#include <stdio.h>
+        -:   24:#include <stdlib.h>
+        -:   25:#include <assert.h>
+        -:   26:#include "rngs.h"
+        -:   27:
+function main called 1 returned 100% blocks executed 93%
+        1:   28:int main(){
+        -:   29:	int t, p, r;
+        1:   30:	int succ = 0;
+        1:   31:	int fail = 0;
+        1:   32:	int seed = 1000;
+        1:   33:	srand(seed);
+call    0 returned 1
+        1:   34:	int numPlayer = (rand()%3)+2;//2-4 players
+call    0 returned 1
+        -:   35:	struct gameState G;
+        1:   36:	int k[10] = {adventurer, council_room, feast, gardens, mine
+        -:   37:			   , remodel, smithy, village, baron, great_hall};
+        -:   38:			   
+     2001:   39:	for(t=0;t<2000;t++){
+branch  0 taken 2000
+branch  1 taken 1 (fallthrough)
+     2000:   40:		memset(&G, 23, sizeof(struct gameState));   // clear the game state
+     2000:   41:		r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+call    0 returned 2000
+     2000:   42:		p = rand()%numPlayer; //choses random player
+call    0 returned 2000
+     2000:   43:		playVillage(&G,p,0);
+call    0 returned 2000
+     2000:   44:		if (G.numActions == 3)
+branch  0 taken 2000 (fallthrough)
+branch  1 taken 0
+     2000:   45:			succ++;
+        -:   46:		else
+    #####:   47:			fail++;
+        -:   48:	}
+        1:   49:	printf("\nCode did not break\n");
+call    0 returned 1
+        1:   50:	printf("Succeded %i times\nFailed %i times\n",succ,fail);
+call    0 returned 1
+        1:   51:	return 0;
+        -:   52:}

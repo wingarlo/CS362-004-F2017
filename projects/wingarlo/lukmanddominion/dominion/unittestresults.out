@@ -1,0 +1,55 @@
+Test player 0 with 5 card(s) in their hand.
+player 0 drew 0 cards into their hand
+G.handCount = 5, expected = 5
+Test player 0 with 5 card(s) in their hand.
+player 0 drew 1 cards into their hand
+G.handCount = 6, expected = 6
+Test player 0 with 5 card(s) in their hand.
+player 0 drew 2 cards into their hand
+G.handCount = 7, expected = 7
+Test player 0 with 5 card(s) in their hand.
+player 0 drew 3 cards into their hand
+G.handCount = 8, expected = 8
+Test player 0 with 5 card(s) in their hand.
+player 0 drew 4 cards into their hand
+G.handCount = 9, expected = 9
+Test player 0 with 5 card(s) in their deck.
+player 0 drew 0 cards into their deck
+G.deckCount = 5, expected = 5
+Test player 0 with 5 card(s) in their deck.
+player 0 drew 1 cards into their deck
+G.deckCount = 6, expected = 6
+Test player 0 with 5 card(s) in their deck.
+player 0 drew 2 cards into their deck
+G.deckCount = 7, expected = 7
+Test player 0 with 5 card(s) in their deck.
+player 0 drew 3 cards into their deck
+G.deckCount = 8, expected = 8
+Test player 0 with 5 card(s) in their deck.
+player 0 drew 4 cards into their deck
+G.deckCount = 9, expected = 9
+Test player 0 with 0 card(s) in their discard.
+player 0 placed 0 cards into their discard
+G.discardCount = 0, expected = 0
+Test player 0 with 0 card(s) in their discard.
+player 0 placed 1 cards into their discard
+G.discardCount = 1, expected = 1
+Test player 0 with 0 card(s) in their discard.
+player 0 placed 2 cards into their discard
+G.discardCount = 2, expected = 2
+Test player 0 with 0 card(s) in their discard.
+player 0 placed 3 cards into their discard
+G.discardCount = 3, expected = 3
+Test player 0 with 0 card(s) in their discard.
+player 0 placed 4 cards into their discard
+G.discardCount = 4, expected = 4
+unittest2: unittest2.c:56: main: Assertion `score == (t)+1+t' failed.
+Test player 0 by adding 0 victory cards in their hand, discard, or deck.
+score = 1, expected = 1
+score = 1, expected = 1
+score = 1, expected = 1
+score = 1, expected = 1
+Test player 0 by adding 1 victory cards in their hand, discard, or deck.
+score = 0, expected = 0
+score = 2, expected = 2
+score = 2, expected = 3

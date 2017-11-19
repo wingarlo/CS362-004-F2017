@@ -48,15 +48,11 @@ card3: dominion.o cardtest3.c
 card4: dominion.o cardtest4.c
 	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.o cardtest4.c rngs.c -o cardtest4 -lm -g
 
-unittestresults.out: card1 card2 card3 card4 unit1 unit2 unit3 unit4 dominion.o
+unittestresults.out: unit1 unit2 unit3 unit4 dominion.o
 	./unittest1 >> unittestresults.out 2>&1
 	./unittest2 >> unittestresults.out 2>&1
 	./unittest3 >> unittestresults.out 2>&1
 	./unittest4 >> unittestresults.out 2>&1
-	./cardtest1 >> unittestresults.out 2>&1
-	./cardtest2 >> unittestresults.out 2>&1
-	./cardtest3 >> unittestresults.out 2>&1
-	./cardtest4 >> unittestresults.out 2>&1
 	gcov -b -c -f dominion >> unittestresults.out 2>&1
 	cat dominion.c.gcov >> unittestresults.out 2>&1
 
