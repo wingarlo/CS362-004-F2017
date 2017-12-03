@@ -49,11 +49,33 @@ public class UrlValidatorTest extends TestCase {
    
    public void testYourFirstPartition()
    {
-	   
+	   UrlValidator urlVal = new UrlValidator();
+	   UrlValidator urlVal1 = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
+	   UrlValidator urlVal2 = new UrlValidator(UrlValidator.ALLOW_LOCAL_URLS);
+	   UrlValidator urlVal3 = new UrlValidator(UrlValidator.NO_FRAGMENTS);
+	   System.out.println("First partition 1: "+urlVal.isValid("http://www.amazon.com"));
+	   System.out.println("First partition 2: "+urlVal.isValid("https://www.amazon.com"));
+	   System.out.println("First partition 3: "+urlVal1.isValid("any://www.amazon.com"));
+	   System.out.println("First partition 4: "+urlVal1.isValid("andall://www.amazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazon.com"));
+	   System.out.println("First partition 5: "+urlVal1.isValid("1ag://www.amazon.com"));
+	   System.out.println("First partition 6: "+urlVal2.isValid("http://localhost/"));
+	   System.out.println("First partition 7: "+urlVal2.isValid("http://machine/"));
+	   System.out.println("First partition 8: "+urlVal3.isValid("http://www.amazon.com"));
    }
    
-   public void testYourSecondPartition(){
-	   
+   public void testYourSecondPartition()
+   {
+	   UrlValidator urlVal = new UrlValidator();
+	   UrlValidator urlVal1 = new UrlValidator(UrlValidator.NO_FRAGMENTS);
+	   UrlValidator urlVal2 = new UrlValidator(UrlValidator.ALLOW_LOCAL_URLS);
+	   UrlValidator urlVal3 = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
+	   System.out.println("Second partition 1: "+urlVal.isValid("abc://www.amazon.com"));
+	   System.out.println("Second partition 2: "+urlVal.isValid("o-o://www.amazon.com"));
+	   System.out.println("Second partition 3: "+urlVal1.isValid("http://www.amazon.com/#1"));
+	   System.out.println("Second partition 4: "+urlVal1.isValid("http://www.amazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazon.com/#1"));
+	   System.out.println("Second partition 5: "+urlVal2.isValid("http://localhostess/"));
+	   System.out.println("Second partition 6: "+urlVal3.isValid("o@o://www.amazon.com"));
+	   System.out.println("Second partition 7: "+urlVal3.isValid("o-o://www.amazon.com"));
    }
    
    
