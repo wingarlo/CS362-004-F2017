@@ -40,8 +40,7 @@ public class UrlValidatorTest extends TestCase {
    
    public void testManualTest()
    {
-	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-	   System.out.println(urlVal.isValid("http://www.amazon.com"));
+
 	   
 	   
    }
@@ -49,36 +48,90 @@ public class UrlValidatorTest extends TestCase {
    
    public void testYourFirstPartition()
    {
+	   System.out.println("\n----------------------------------------------------");
+	   System.out.println("Partition 1: Length and character equivalence");
+	   System.out.println("----------------------------------------------------");
 	   UrlValidator urlVal = new UrlValidator();
 	   UrlValidator urlVal1 = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
-	   UrlValidator urlVal2 = new UrlValidator(UrlValidator.ALLOW_LOCAL_URLS);
-	   UrlValidator urlVal3 = new UrlValidator(UrlValidator.NO_FRAGMENTS);
-	   System.out.println("First partition 1: "+urlVal.isValid("http://www.amazon.com"));
-	   System.out.println("First partition 2: "+urlVal.isValid("https://www.amazon.com"));
-	   System.out.println("First partition 3: "+urlVal1.isValid("any://www.amazon.com"));
-	   System.out.println("First partition 4: "+urlVal1.isValid("andall://www.amazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazon.com"));
-	   System.out.println("First partition 5: "+urlVal1.isValid("1ag://www.amazon.com"));
-	   System.out.println("First partition 6: "+urlVal2.isValid("http://localhost/"));
-	   System.out.println("First partition 7: "+urlVal2.isValid("http://machine/"));
-	   System.out.println("First partition 8: "+urlVal3.isValid("http://www.amazon.com"));
-   }
+	   
+	   //length with a
+	   System.out.println("Expected: true: "+urlVal.isValid("http://www.a.com"));
+	   System.out.println("Expected: true: "+urlVal.isValid("https://www.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.com"));
+	   System.out.println("Expected: true: "+urlVal.isValid("https://www.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.com"));
+	   
+	   //length with b
+	   System.out.println("Expected: true: "+urlVal.isValid("http://www.b.com"));
+	   System.out.println("Expected: true: "+urlVal.isValid("https://www.bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.com"));
+	   System.out.println("Expected: true: "+urlVal.isValid("https://www.bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.com"));
+	   //assuming if a results the same as b, we  get the same results for all lower case letters.
+	   
+	   
+}
    
    public void testYourSecondPartition()
    {
+	   System.out.println("\n----------------------------------------------------");
+	   System.out.println("Partition 2: Fragments");
+	   System.out.println("----------------------------------------------------");
 	   UrlValidator urlVal = new UrlValidator();
 	   UrlValidator urlVal1 = new UrlValidator(UrlValidator.NO_FRAGMENTS);
-	   UrlValidator urlVal2 = new UrlValidator(UrlValidator.ALLOW_LOCAL_URLS);
-	   UrlValidator urlVal3 = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
-	   System.out.println("Second partition 1: "+urlVal.isValid("abc://www.amazon.com"));
-	   System.out.println("Second partition 2: "+urlVal.isValid("o-o://www.amazon.com"));
-	   System.out.println("Second partition 3: "+urlVal1.isValid("http://www.amazon.com/#1"));
-	   System.out.println("Second partition 4: "+urlVal1.isValid("http://www.amazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazonamazon.com/#1"));
-	   System.out.println("Second partition 5: "+urlVal2.isValid("http://localhostess/"));
-	   System.out.println("Second partition 6: "+urlVal3.isValid("o@o://www.amazon.com"));
-	   System.out.println("Second partition 7: "+urlVal3.isValid("o-o://www.amazon.com"));
+	   System.out.println("Expected: true: "+urlVal.isValid("http://www.amazon.com/#1"));
+	   System.out.println("Expected: true: "+urlVal.isValid("http://www.amazon.com/#10"));
+	   System.out.println("Expected: true: "+urlVal.isValid("http://www.amazon.com/#1a"));
+	   System.out.println("Expected: true: "+urlVal.isValid("http://www.amazon.com/#a"));
+	   System.out.println("Expected: true: "+urlVal.isValid("http://www.amazon.com/#haveyouheardthetragedyofdarthplageousthewise"));
+	   
+	   System.out.println("Expected: false: "+urlVal1.isValid("http://www.amazon.com/#1"));
+	   System.out.println("Expected: false: "+urlVal1.isValid("http://www.amazon.com/#10"));
+	   System.out.println("Expected: false: "+urlVal1.isValid("http://www.amazon.com/#1a"));
+	   System.out.println("Expected: false: "+urlVal1.isValid("http://www.amazon.com/#a"));
+	   System.out.println("Expected: false: "+urlVal1.isValid("http://www.amazon.com/#haveyouheardthetragedyofdarthplageousthewise"));
+	   
    }
    
+   public void testYourThirdPartition()
+   {
+	   System.out.println("\n----------------------------------------------------");
+	   System.out.println("Partition 3: Local URLs");
+	   System.out.println("----------------------------------------------------");
+	   UrlValidator urlVal2 = new UrlValidator(UrlValidator.ALLOW_LOCAL_URLS);
+	   System.out.println("Expected: true: "+urlVal2.isValid("http://localhost/"));
+	   System.out.println("Expected: true: "+urlVal2.isValid("http://machine/"));
+	   System.out.println("Expected: false: "+urlVal2.isValid("http://localhostess/"));
+	   System.out.println("Expected: false: "+urlVal2.isValid("http://human/"));
+   }
    
+   public void testYourFourthPartition()
+   {
+	   System.out.println("\n----------------------------------------------------");
+	   System.out.println("Partition 4: Schemes");
+	   System.out.println("----------------------------------------------------");
+	   UrlValidator urlVal = new UrlValidator();
+	   UrlValidator urlVal1 = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
+	   
+	   System.out.println("Expected: true: "+urlVal.isValid("http://www.amazon.com"));
+	   System.out.println("Expected: true: "+urlVal.isValid("https://www.amazon.com"));
+	   System.out.println("Expected: false: "+urlVal.isValid("htp://www.amazon.com"));
+	   System.out.println("Expected: false: "+urlVal.isValid("somethingotherthanhttps://www.amazon.com"));
+	   
+	   //character and length test with all schemes allowed
+	   System.out.println("Expected: true: "+urlVal1.isValid("a://www.amazon.com"));
+	   System.out.println("Expected: true: "+urlVal1.isValid("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa://www.amazon.com"));
+	   System.out.println("Expected: true: "+urlVal1.isValid("b://www.amazon.com"));
+	   System.out.println("Expected: true: "+urlVal1.isValid("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb://www.amazon.com"));
+	   System.out.println("Expected: true: "+urlVal1.isValid("b12://www.amazon.com"));
+	   
+	   //special characters
+	   System.out.println("Expected: false: "+urlVal1.isValid("o-o://www.amazon.com"));
+	   System.out.println("Expected: false: "+urlVal1.isValid("o@o://www.amazon.com"));
+	   System.out.println("Expected: false: "+urlVal1.isValid("b o b://www.amazon.com"));
+	   System.out.println("Expected: false: "+urlVal1.isValid("o!://www.amazon.com"));
+	   System.out.println("Expected: false: "+urlVal1.isValid("}o://www.amazon.com"));
+	   System.out.println("Expected: false: "+urlVal1.isValid("*o://www.amazon.com"));
+	   System.out.println("Expected: false: "+urlVal1.isValid("?://www.amazon.com"));
+	   
+	   
+   }
    public void testIsValid()
    {
 	   for(int i = 0;i<10000;i++)
