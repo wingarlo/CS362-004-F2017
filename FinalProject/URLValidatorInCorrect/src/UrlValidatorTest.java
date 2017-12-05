@@ -80,6 +80,9 @@ public class UrlValidatorTest extends TestCase {
 	   System.out.println("Expected: true: "+urlVal.isValid("http://www.amazon.com/#1a"));
 	   System.out.println("Expected: true: "+urlVal.isValid("http://www.amazon.com/#a"));
 	   System.out.println("Expected: true: "+urlVal.isValid("http://www.amazon.com/#haveyouheardthetragedyofdarthplageousthewise"));
+	   System.out.println("Expected: true: "+urlVal.isValid("http://www.amazon.com/#!"));
+	   System.out.println("Expected: true: "+urlVal.isValid("http://www.amazon.com/#?"));
+	   System.out.println("Expected: true: "+urlVal.isValid("http://www.amazon.com/#@#(*&"));
 	   
 	   System.out.println("Expected: false: "+urlVal1.isValid("http://www.amazon.com/#1"));
 	   System.out.println("Expected: false: "+urlVal1.isValid("http://www.amazon.com/#10"));
@@ -120,6 +123,7 @@ public class UrlValidatorTest extends TestCase {
 	   System.out.println("Expected: true: "+urlVal1.isValid("b://www.amazon.com"));
 	   System.out.println("Expected: true: "+urlVal1.isValid("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb://www.amazon.com"));
 	   System.out.println("Expected: true: "+urlVal1.isValid("b12://www.amazon.com"));
+	   System.out.println("Expected: true: "+urlVal1.isValid("1b2://www.amazon.com"));
 	   
 	   //special characters
 	   System.out.println("Expected: false: "+urlVal1.isValid("o-o://www.amazon.com"));
@@ -130,7 +134,48 @@ public class UrlValidatorTest extends TestCase {
 	   System.out.println("Expected: false: "+urlVal1.isValid("*o://www.amazon.com"));
 	   System.out.println("Expected: false: "+urlVal1.isValid("?://www.amazon.com"));
 	   
-	   
+   }
+   
+   public void testYourFifthPartition()
+   {
+	   System.out.println("\n----------------------------------------------------");
+	   System.out.println("Partition 5: Ports and Paths");
+	   System.out.println("----------------------------------------------------");
+	   UrlValidator urlVal = new UrlValidator();
+	   UrlValidator urlVal1 = new UrlValidator(UrlValidator.ALLOW_2_SLASHES);
+	   System.out.println("Expected: true: "+urlVal.isValid("https://www.amazon.com:1/under/there"));
+	   System.out.println("Expected: true: "+urlVal.isValid("https://www.amazon.com:11/under/there"));
+	   System.out.println("Expected: true: "+urlVal.isValid("https://www.amazon.com:111/under/there"));
+	   System.out.println("Expected: true: "+urlVal.isValid("https://www.amazon.com:1111/under/there"));
+	   System.out.println("Expected: true: "+urlVal.isValid("https://www.amazon.com:8042/under/there"));
+	   System.out.println("Expected: true: "+urlVal.isValid("https://www.amazon.com:9999/under/there"));
+	   System.out.println("Expected: true: "+urlVal.isValid("https://www.amazon.com:9999999999/under/there"));
+	   System.out.println("Expected: false: "+urlVal.isValid("https://www.amazon.com:8000/under//there"));
+	   System.out.println("Expected: true: "+urlVal.isValid("https://www.amazon.com:8000/under/there/under/where/haha/gotcha/what/do/you/mean/gotcha/I/got/you/to/say/underwear/oh/haha/that/is/pretty/funny"));
+	   System.out.println("Expected: true: "+urlVal.isValid("https://www.amazon.com/under/there"));
+	   System.out.println("Expected: true: "+urlVal.isValid("https://www.amazon.com/under/there"));
+	   System.out.println("Expected: true: "+urlVal.isValid("https://www.amazon.com/under/there"));
+	   System.out.println("Expected: false: "+urlVal.isValid("https://www.amazon.com/under//there"));
+	   System.out.println("Expected: true: "+urlVal.isValid("https://www.amazon.com/under/there/under/where/haha/gotcha/what/do/you/mean/gotcha/I/got/you/to/say/underwear/oh/haha/that/is/pretty/funny"));
+	   System.out.println("Expected: false: "+urlVal.isValid("https://www.amazon.com /under/there"));
+	   System.out.println("Expected: false: "+urlVal.isValid("https://www.amazon.com /under /there"));
+
+	   System.out.println("Expected: true: "+urlVal1.isValid("https://www.amazon.com:1/under/there"));
+	   System.out.println("Expected: true: "+urlVal1.isValid("https://www.amazon.com:11/under/there"));
+	   System.out.println("Expected: true: "+urlVal1.isValid("https://www.amazon.com:111/under/there"));
+	   System.out.println("Expected: true: "+urlVal1.isValid("https://www.amazon.com:1111/under/there"));
+	   System.out.println("Expected: true: "+urlVal1.isValid("https://www.amazon.com:8042/under/there"));
+	   System.out.println("Expected: true: "+urlVal1.isValid("https://www.amazon.com:9999/under/there"));
+	   System.out.println("Expected: true: "+urlVal1.isValid("https://www.amazon.com:9999999999/under/there"));
+	   System.out.println("Expected: true: "+urlVal1.isValid("https://www.amazon.com:8000/under//there"));
+	   System.out.println("Expected: true: "+urlVal1.isValid("https://www.amazon.com:8000/under/there/under/where/haha/gotcha/what/do/you/mean/gotcha/I/got/you/to/say/underwear/oh/haha/that/is/pretty/funny"));
+	   System.out.println("Expected: true: "+urlVal1.isValid("https://www.amazon.com/under/there"));
+	   System.out.println("Expected: true: "+urlVal1.isValid("https://www.amazon.com/under/there"));
+	   System.out.println("Expected: true: "+urlVal1.isValid("https://www.amazon.com/under/there"));
+	   System.out.println("Expected: true: "+urlVal1.isValid("https://www.amazon.com/under//there"));
+	   System.out.println("Expected: true: "+urlVal1.isValid("https://www.amazon.com/under/there/under/where/haha/gotcha/what/do/you/mean/gotcha/I/got/you/to/say/underwear/oh/haha/that/is/pretty/funny"));
+	   System.out.println("Expected: false: "+urlVal1.isValid("https://www.amazon.com /under/there"));
+	   System.out.println("Expected: false: "+urlVal1.isValid("https://www.amazon.com /under /there"));
    }
    public void testIsValid()
    {
