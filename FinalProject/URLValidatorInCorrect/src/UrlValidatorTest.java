@@ -147,6 +147,10 @@ public class UrlValidatorTest extends TestCase {
 	   System.out.println("Expected: true: "+urlVal.isValid("https://www.amazon.com:11/under/there"));
 	   System.out.println("Expected: true: "+urlVal.isValid("https://www.amazon.com:111/under/there"));
 	   System.out.println("Expected: true: "+urlVal.isValid("https://www.amazon.com:1111/under/there"));
+	   System.out.println("Expected: true: "+urlVal.isValid("https://www.amazon.com:1/under//there"));
+	   System.out.println("Expected: true: "+urlVal.isValid("https://www.amazon.com:11/under//there"));
+	   System.out.println("Expected: true: "+urlVal.isValid("https://www.amazon.com:111/under//there"));
+	   System.out.println("Expected: true: "+urlVal.isValid("https://www.amazon.com:1111/under//there"));
 	   System.out.println("Expected: true: "+urlVal.isValid("https://www.amazon.com:8042/under/there"));
 	   System.out.println("Expected: true: "+urlVal.isValid("https://www.amazon.com:9999/under/there"));
 	   System.out.println("Expected: true: "+urlVal.isValid("https://www.amazon.com:9999999999/under/there"));
@@ -164,6 +168,10 @@ public class UrlValidatorTest extends TestCase {
 	   System.out.println("Expected: true: "+urlVal1.isValid("https://www.amazon.com:11/under/there"));
 	   System.out.println("Expected: true: "+urlVal1.isValid("https://www.amazon.com:111/under/there"));
 	   System.out.println("Expected: true: "+urlVal1.isValid("https://www.amazon.com:1111/under/there"));
+	   System.out.println("Expected: true: "+urlVal1.isValid("https://www.amazon.com:1/under//there"));
+	   System.out.println("Expected: true: "+urlVal1.isValid("https://www.amazon.com:11/under//there"));
+	   System.out.println("Expected: true: "+urlVal1.isValid("https://www.amazon.com:111/under//there"));
+	   System.out.println("Expected: true: "+urlVal1.isValid("https://www.amazon.com:1111/under//there"));
 	   System.out.println("Expected: true: "+urlVal1.isValid("https://www.amazon.com:8042/under/there"));
 	   System.out.println("Expected: true: "+urlVal1.isValid("https://www.amazon.com:9999/under/there"));
 	   System.out.println("Expected: true: "+urlVal1.isValid("https://www.amazon.com:9999999999/under/there"));
